@@ -3,20 +3,25 @@
 UI Test Automation Library
 version 1.4
  
-Updated: Dec. 8, 2013 
+Updated: Mar. 21, 2017
 Created by: Feng Wu (477875@qq.com)
 --------------------------------
 */
 
 ;SetWorkingDir, %A_ScriptDir%
-; AHK Standard Library
-#Include  ../../Lib/gdip.ahk
+;AHK Standard Library
+#Include  ../../Lib/Gdip_All.ahk
 #Include  ../../Lib/HTTPRequest.ahk
 #Include  ../../Lib/StrX.ahk
 #Include  ../../Lib/UnHTM.ahk
 #Include  ../../Lib/json.ahk
 /* 
 -------------------------------------Update History------------------------------
+03/21/2017
+Replace Gdip.ahk with Gdip_All.ahk to support AHK: 32, 64, unicode, ansi
+Solve printScreen does not work with Gdip on Win10 64bit
+PrtScreen / PrtFromScreen
+https://autohotkey.com/boards/viewtopic.php?f=6&t=6517
 02/12/2014 
 update WaitForImageVanish
 12/08/2013
@@ -1298,33 +1303,35 @@ ActiveBrowserWin()
 ; Return Value:
 ;		None
 ; Remarks:
-; 		Need gdip.ahk library
+; 		Need Gdip_All.ahk library
 ; Related: 
 ;		[bbcode] PrtFromScreen
 ; Example:
 ;		1. PrtScreen()
-;		2. PrtScreen("C:\screen.png")
+;		2. PrtScreen("screen.png")
 ;
 ;-------------------------------------------------------------------------------
 PrtScreen(file_name_path = "")
 {
 	global @capture_screen_path 
-	fpath := file_name_path ? file_name_path : (A_ScriptDir . "\" . @capture_screen_path . "\" . A_Now . ".png")								 
-	pToken := gdip_Startup()
+	fpath := file_name_path ? file_name_path : (A_ScriptDir . "\" . A_Now . ".png")	
+	/*
+	fdir := A_ScriptDir . "\" . @capture_screen_path . "\"
+	fname := file_name ? file_name :  A_Now . ".png"
+	fpath := fdir . fname
+	*/
+	pToken := Gdip_Startup()
 	hwnd := WinExist("A")
-	pBitmap := gdip_BitmapFromHWND(hwnd)
-	gdip_SaveBitmapToFile(pBitmap, fpath)
-	gdip_DisposeImage(pBitmap)
-	gdip_Shutdown(pToken)
-	ToolTip, Capture Screenshot Successfully `n %fpath% 
-	Sleep, 1000
-	ToolTip
+	pBitmap := Gdip_BitmapFromHWND(hwnd)
+	Gdip_SaveBitmapToFile(pBitmap, fpath)
+	Gdip_DisposeImage(pBitmap)
+	Gdip_Shutdown(pToken)
+	ShowTooltip("Capture Screenshot Successfully `n" . fpath)
 	return
 }
-
 ;-------------------------------------------------------------------------------
 ;
-; Function: PrtImgFromScreen
+; Function: PrtFromScreen
 ; Description:
 ;		Capture specified region screenshot to a file
 ; Syntax: PrtFromScreen(strcoors [, file_name_path = ""])
@@ -1332,16 +1339,16 @@ PrtScreen(file_name_path = "")
 ;		strcoor - "x1,y1,x2,y2"  
 ;			(x1, y1) is the coordinate of the upper-left corner of the rectangle
 ;			(x2, y2) is the coordinate of the lower right corner of the rectangle
-;		file_name_path - (Optional) sepcified image file with path to save it
-;			if the parameter is blank,then the screenshot will be in script directory 
+;		file_name_path - (Optional) file_name_path - (Optional) sepcified image file with path to save it
+;	    	if the parameter is blank,then the screenshot will be in "capture_screen" directory 
 ; Return Value:
 ;		None
 ; Remarks:
-; 		Need gdip.ahk library
+; 		Need Gdip_All.ahk library
 ; Related: 
-;		[bbcode] PrtFromScreen
+;		[bbcode] PrtScreen
 ; Example:
-;		PrtImgFromScreen("250,250,350,350", "C:\region.png")
+;		PrtFromScreen("250,250,350,350", "region.png")
 ;
 ;-------------------------------------------------------------------------------
 PrtFromScreen(strcoors, file_name_path = "")
@@ -1357,9 +1364,7 @@ PrtFromScreen(strcoors, file_name_path = "")
 		pBitmap := Gdip_BitmapFromScreen(xywh) ;"100|200|300|400"
 		Gdip_SaveBitmapToFile(pBitmap, fpath)   ; save Full sized image
 		Gdip_Shutdown(pToken)
-		ToolTip, Capture Screenshot Successfully `n %fpath% 
-		Sleep, 1000
-		ToolTip
+		ShowTooltip("Capture Screenshot Successfully `n" . fpath)
 	}
 	else 
 	{

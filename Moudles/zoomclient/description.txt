@@ -1,0 +1,5 @@
+﻿zoomclient TA
+step1: Open Zoom client
+step2: Open login dialog
+step3: Input user name and user password
+step4: logout

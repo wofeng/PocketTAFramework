@@ -1,0 +1,5 @@
+﻿zoompage TA
+step1: Open Zoom development page
+step2: Enter sign in page
+step3: Input user name and user password
+step4: logout

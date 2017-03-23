@@ -136,6 +136,9 @@ return
 Pause::
 Pause
 Suspend
+ToolTip, Pause/Resume..........
+Sleep, 1000
+ToolTip
 return
 
 PrintScreen::

@@ -1,6 +1,6 @@
 /* 
 -----------------------------
-WebEx11 Modules' Library
+Modules' Library
 version 0.1
  
 Updated: Nov. 04, 2013 
@@ -24,7 +24,7 @@ SetWorkingDir, %A_ScriptDir%
 ;
 ; Function: CreateEmailAccount
 ; Description:
-;		Sign up a new email account in "mail.qa.webex.com" site
+;		Sign up a new email account in "mail.qa.test.com" site
 ; Syntax: CreateEmailAccount(username, domain [, pwd = "pass"])
 ; Parameters:
 ;		username - prefix name of the new email
@@ -35,12 +35,12 @@ SetWorkingDir, %A_ScriptDir%
 ; Related:
 ;		None
 ; Example: 
-;	CreateEmailAccount("feng", "qa.webex.com")
+;	CreateEmailAccount("feng", "qa.test.com")
 ; 
 ;-------------------------------------------------------------------------------
 CreateEmailAccount(username, domain, pwd = "pass")
 {
-   url := "http://mail.qa.webex.com/create.asp"
+   url := "http://mail.qa.test.com/create.asp"
 
    data =
    ( LTrim Join&
@@ -113,9 +113,9 @@ __GetEndTime()
 ; Return Value:
 ;		the latest email id
 ; Remarks:
-;		HELP: [url]http://bk.qa.webex.com/freemail/resthelp.txt[/url]
+;		HELP: [url]http://bk.qa.test.com/freemail/resthelp.txt[/url]
 ; 		GET http://<url>/freemail/rest/<mailaccount>?offset=&count=&begintime=&endtime=&topiclike=
-;		eg: http://bk.qa.webex.com/freemail/rest/sp102@sprt66.com?offset=1&count=10&begintime=1345706067000&endtime=1345706097001&topiclike=comment
+;		eg: http://bk.qa.test.com/freemail/rest/sp102@sprt66.com?offset=1&count=10&begintime=1345706067000&endtime=1345706097001&topiclike=comment
 ;		All following parameters are optional.
 ;       offset: the from index of result range, default 1
 ;       count:  get count number of mails (MAX 100), default 10
@@ -131,7 +131,7 @@ __GetEndTime()
 GetEmailIDFromFreeEmail(receuser_email)
 {
    global @error_msg
-   url := "http://bk.qa.webex.com/freemail/rest/" . receuser_email
+   url := "http://bk.qa.test.com/freemail/rest/" . receuser_email
    ; begintime = __GetBeginTime()
    ; endtime = __GetEndTime()
    data =
@@ -171,7 +171,7 @@ GetEmailIDFromFreeEmail(receuser_email)
 ;		json string
 ; Remarks:
 ;		http://<url>/freemail/rest/mails/<mailid>  
-;		eg:http://bk.qa.webex.com/freemail/rest/mails/sp102%40sprt66.com187533108383184
+;		eg:http://bk.qa.test.com/freemail/rest/mails/sp102%40sprt66.com187533108383184
 ; Related:
 ;		GetEmailInfoFromFreeEmail
 ; Example: 
@@ -183,7 +183,7 @@ GetEmailIDFromFreeEmail(receuser_email)
 GetEmailContentFromFreeEmail(email_id)
 {
    encid := UriEncode(email_id)
-   url := "http://bk.qa.webex.com/freemail/rest/mails/" . encid
+   url := "http://bk.qa.test.com/freemail/rest/mails/" . encid
    HTTPRequest(url, email_content)
    Debug("[" . A_ThisFunc . "] Pass - emailID=" . email_id)
    return email_content
@@ -216,7 +216,7 @@ DeleteEmail(email_id)
    ( LTRIM C
       Method: DELETE
    )
-   url := "http://bk.qa.webex.com/freemail/rest/mails/" . email_id
+   url := "http://bk.qa.test.com/freemail/rest/mails/" . email_id
    HTTPRequest(url,data,, options)
    Debug("[" . A_ThisFunc . "]" . (data == 1 ? "Pass!!" : "Err!"))
 }
@@ -246,7 +246,7 @@ DeleteAccount(email)
    ( LTRIM C
       Method: DELETE
    )
-   url := "http://bk.qa.webex.com/freemail/rest/" . email
+   url := "http://bk.qa.test.com/freemail/rest/" . email
    HTTPRequest(url,data,, options)
    Debug("[" . A_ThisFunc . "] " . (data == 1 ? "Pass!" : "Err!"))
 }
@@ -467,8 +467,8 @@ __SearchEmailByEmailCode(jarr, email_code)
 GetEmailIDByTopic(receuser_email, key_str, email_code = "")
 {
    global @error_msg
-   ;url := "http://bk.qa.webex.com/freemail/rest/" . receuser_email
-   url := "http://bk.qa.webex.com/freemail/rest/" . receuser_email . "?topiclike=" . key_str
+   ;url := "http://bk.qa.test.com/freemail/rest/" . receuser_email
+   url := "http://bk.qa.test.com/freemail/rest/" . receuser_email . "?topiclike=" . key_str
   /* 
    data =
    ( LTrim Join&
@@ -519,7 +519,7 @@ GetEmailIDByTopic(receuser_email, key_str, email_code = "")
 ;-------------------------------------------------------------------------------
 EmailPageURL(email_id)
 {
-   return "http://bk.qa.webex.com/freemail/?cmd=view&messid=" . email_id
+   return "http://bk.qa.test.com/freemail/?cmd=view&messid=" . email_id
    
 }
 
@@ -935,7 +935,7 @@ DeleteAllEmailsFromOL(data_file_name)
 ;		)
 ;		; Sender is default account: feng@test.com
 ;		SendEmailFromOL("feng@test.com;feng2@test.com", "Subject for test email", body) 
-;		; Sender is other account: jon@mail.qa.webex.com, Jon is the account name in "Account Settings"
+;		; Sender is other account: jon@mail.qa.test.com, Jon is the account name in "Account Settings"
 ;		SendEmailFromOL("feng@test.com", "Subject for test email", body, "C:\a.txt", "Jon", true)
 ; 
 ;-------------------------------------------------------------------------------
