@@ -25,7 +25,7 @@ return
 #include ../../Common/scriptfooter.ahk
 </code></pre>
 
-## 4. specified steps execution
+## 4. Specified steps execution
 create a <filename>.ini under "common" directory, open DebugView to see test case execution record
 anyname.ini:
 <code>
