@@ -27,13 +27,14 @@ return
 
 ## 4. Specified steps execution
 create a <filename>.ini under "common" directory, open DebugView to see test case execution record
+
 anyname.ini:
-<code>
+<pre><code>
 [Cases]
 c1=OpenSite
 c2=SignIn
 c3=SignOut
-</code>
+</code></pre>
 
 login.ahk:
 <pre><code>
