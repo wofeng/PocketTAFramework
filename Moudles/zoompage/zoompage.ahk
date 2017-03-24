@@ -3,16 +3,18 @@
 #NoEnv
 #include ../../Common/scriptheader.ahk
 
+/*
 Gosub, RunAllCases
 ExitApp
-/*
+*/
+
 Gosub, initVars
 Gosub, SignInPage
 PrtScreen("test.png")
 Gosub, SignIn
 Gosub, SignOut
 ExitApp
-*/
+
 initVars:
 global @brexe = "firefox.exe"
 global @site_url = "https://dev.zoom.us"

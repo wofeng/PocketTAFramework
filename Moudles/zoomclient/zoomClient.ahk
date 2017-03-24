@@ -2,15 +2,15 @@
 #NoTrayIcon
 #NoEnv
 #include ../../Common/scriptheader.ahk
-
+/*
 Gosub, RunAllCases
 ExitApp
-/*
+*/
+
 Gosub, OpenZoomClient
 Gosub, LoginClient
 Gosub, LogoutClient
 ExitApp
-*/
 
 OpenZoomClient:
 paths := "C:\Users\" . A_UserName . "\AppData\Roaming\Zoom\bin\zoom.exe"
@@ -25,7 +25,7 @@ xy2 := waitForImage("google.png")
 ClickElement(xy2[1] - 150 . "," . xy2[2] - 60,,"W")
 _InputVal("xxx@mailinator.com")
 ClickElement("0, 60")
-_InputVal("xxxx")
+_InputVal("xxx")
 Debug(xy2[1] . "," . xy2[2])
 ClickElement(xy2[1] - 80 . "," . xy2[2] + 40,,"W")
 WinWaitActive, ahk_class ZPPTMainFrmWndClass,,%@timeout%/1000
