@@ -21,4 +21,3 @@ OutputDebug,--------------------f3-----------------------
 return
 
 #include  ../../Common/scriptfooter.ahk
-#Include  ../../Lib/WX11/WX11Lib.ahk
