@@ -10,7 +10,6 @@ ExitApp
 
 Gosub, initVars
 Gosub, SignInPage
-PrtScreen("test.png")
 Gosub, SignIn
 Gosub, SignOut
 ExitApp
@@ -24,19 +23,19 @@ SignInPage:
 OpenSiteWithBrowser()
 WaitForImage("login.png")
 xy:= WaitForImage("logo.png")
-ClickElement(xy[1] + 1200 . "," . xy[2] + 8,,"W")  ;sig in link
+ClickElement(xy[1] + 1200 . "," . xy[2] + 8,,"W")  ;sign in link
 return
 
 SignIn:
 WaitForImage("facebook.png")
 ClickElement("-500, 170")
-Send xxx@mailinator.com
-Send, {Tab} xxx {Enter}
+Send xxx@mailinator.com			//user email
+Send, {Tab} xxx {Enter}			//password	
 return
 
 SignOut:
 WaitForImage("profile.png")
 xy:= WaitForImage("logo.png")
-ClickElement(xy[1] + 1850 . "," . xy[2] + 8,,"W") 
+ClickElement(xy[1] + 1850 . "," . xy[2] + 8,,"W") ; logout link
 return
 #include ../../Common/scriptfooter.ahk

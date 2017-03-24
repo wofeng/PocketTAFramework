@@ -23,10 +23,9 @@ xy1 := waitForImage("loginclient.png")
 ClickElement(xy1[1] + 80 . "," . xy1[2] + 10,,"W")
 xy2 := waitForImage("google.png")
 ClickElement(xy2[1] - 150 . "," . xy2[2] - 60,,"W")
-_InputVal("xxx@mailinator.com")
+_InputVal("xxx@mailinator.com")  ; user email
 ClickElement("0, 60")
-_InputVal("xxx")
-Debug(xy2[1] . "," . xy2[2])
+_InputVal("xxx")				; user password
 ClickElement(xy2[1] - 80 . "," . xy2[2] + 40,,"W")
 WinWaitActive, ahk_class ZPPTMainFrmWndClass,,%@timeout%/1000
 return
