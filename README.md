@@ -1,4 +1,4 @@
-# Pocket TA FrameWork(口袋自动化测试框架)
+# Pocket TA Framework(口袋自动化测试框架)
 ## 1.What's Pocket TA Framework?
 Pocket TA framework like Sikuli, but easy to use than it, the framework is develped by AutoHotkey and also supports automates anything you see on the screen. It uses image or color recognition to identify and control GUI components.
 pocket means easy to develop, easy to maintain and easy to share your scripts to others. no need to learn much for a tester or developer to master it. Page UI test scripts support IE, Chrome and firefox run on windows, framework provides one key to pause, resume and stop script excution. Using third-party libraries of AutoHotKey can make a lot of incredible things. Let's start :)
