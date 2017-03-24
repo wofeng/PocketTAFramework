@@ -89,4 +89,4 @@ you can use TestCaseManager tool to manage your test cases.
 
 Enjoy it :)
 
-details http://wofeng.github.io/blog/2016/06/09/2016-06-09-PocketTA/  (Chinese)
+Reference: http://wofeng.github.io/blog/2016/06/09/2016-06-09-PocketTA/  (Chinese)
