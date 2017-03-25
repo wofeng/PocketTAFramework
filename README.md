@@ -4,15 +4,15 @@ Pocket TA framework like Sikuli, but easy to use than it, the framework is devel
 pocket means easy to develop, easy to maintain and easy to share your scripts to others. No need to learn much for a tester or developer to master it. Page UI test scripts support IE, Chrome and firefox run on windows, framework provides one key to pause, resume and stop script excution. Using third-party libraries of AutoHotKey can make a lot of incredible things. 
 
 ## 2. How to use?
-step1: Go to [AutoHotKey site](https://autohotkey.com/) and download AutoHotkey Installer, install AutoHotkey v1.1.* 
+<pre>step1: Go to [AutoHotKey site](https://autohotkey.com/) and download AutoHotkey Installer, install AutoHotkey v1.1.* 
 step2: git clone https://github.com/wofeng/PocketTAFramework.git
 step3: unzip and install IDE - SciTE4AHK300601_Install.zip, Log console - DebugView.zip and screen ruler - ScreenRuler.zip 
 note: all can be found in softwares directory
-
+</pre>
 ## 3. Write "hello world"
 1. create a directory "helloworld" under "Modules" directory
 2. create a helloworld.apk 
-<pre>
+<pre><code>
 #include ../../Common/scriptheader.ahk
 ;main function
 Gosub, Helloworld
@@ -23,7 +23,7 @@ MsgBox, Hello world!
 return
 
 #include ../../Common/scriptfooter.ahk
-</pre>
+</code></pre>
 
 ## 4. Specified steps execution
 create a <filename>.ini under "common" directory, open DebugView to see test case execution record
